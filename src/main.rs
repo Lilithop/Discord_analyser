@@ -112,7 +112,7 @@ async fn scan_virustotal(client: &HttpClient, url: &str) -> u8 {
         Err(_) => return 0,
     };
 
-    // 1️⃣ Enviar URL a VirusTotal
+    
     let submit = client
         .post("https://www.virustotal.com/api/v3/urls")
         .header("x-apikey", &key)
@@ -135,7 +135,7 @@ async fn scan_virustotal(client: &HttpClient, url: &str) -> u8 {
     // 2️⃣ Esperar a que VT analice
     tokio::time::sleep(std::time::Duration::from_secs(8)).await;
 
-    // 3️⃣ Obtener reporte
+
     let report = client
         .get(format!(
             "https://www.virustotal.com/api/v3/analyses/{}",
